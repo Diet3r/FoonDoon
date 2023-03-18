@@ -1923,6 +1923,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f65ffc70db923c41995130a87ace715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLifePoints: 20
+  currentLifePoints: 20
+  isAlife: 1
+  maxEnergyPoints: 20
+  currentEnergyPoints: 20
+  attacksLearned: 
+  attackName: Hau
+  isDamageAttack: 1
+  attackDamage: 10
+  attackEnergyCost: 5
 --- !u!1 &1706126260
 GameObject:
   m_ObjectHideFlags: 0
