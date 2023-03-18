@@ -7,7 +7,16 @@ public class PlayerBattle: MonoBehaviour
     int maxLifePoints = 20;
     int currentLifePoints = 20;
     bool isAlife = true;
+
+    int maxEnergyPoints = 20;
+    int currentEnergyPoints = 20;
+
+    List<int> attacksLearned = new List<int>();
+
+    string attackName = "Hau";
     bool isDamageAttack = true;
+    int attackDamage = 10;
+    int attackEnergyCost = 5;
 
     // Start is called before the first frame update
     void Start()
