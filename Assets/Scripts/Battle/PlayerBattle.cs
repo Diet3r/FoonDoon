@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class PlayerBattle: MonoBehaviour
 {
-    int maxLifePoints = 20;
-    int currentLifePoints = 20;
-    bool isAlife = true;
-    bool isDamageAttack = true;
+    public int maxLifePoints = 20;
+    public int currentLifePoints = 20;
+    public bool isAlife = true;
+
+    public int maxEnergyPoints = 20;
+    public int currentEnergyPoints = 20;
+
+    [SerializeField]List<int> attacksLearned = new List<int>();
+
+    public string attackName = "Hau";
+    public bool isDamageAttack = true;
+    public int attackDamage = 10;
+    public int attackEnergyCost = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -39,10 +48,5 @@ public class PlayerBattle: MonoBehaviour
     bool IsDamageAttack()
     {
         return isDamageAttack; 
-    }
-
-    int AttackOne()
-    {
-        return 5;
     }
 }
