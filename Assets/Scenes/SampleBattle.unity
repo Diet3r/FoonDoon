@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 207989956}
   - component: {fileID: 207989957}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: PLifeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 293228115}
   - component: {fileID: 293228114}
   - component: {fileID: 293228113}
+  - component: {fileID: 293228117}
   m_Layer: 5
   m_Name: BattleOverlayCanvas
   m_TagString: Untagged
@@ -401,6 +402,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &293228117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293228112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffffecd74f7c1614da083c82db8666f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNameText: {fileID: 0}
+  playerLevelText: {fileID: 0}
+  playerHealthSlider: {fileID: 207989957}
+  enemyNameText: {fileID: 0}
+  enemyLevelText: {fileID: 0}
+  enemyHealthSlider: {fileID: 999879747}
 --- !u!1 &450841555
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +432,7 @@ GameObject:
   - component: {fileID: 450841558}
   - component: {fileID: 450841557}
   m_Layer: 5
-  m_Name: LvlText (TMP)
+  m_Name: PLvlText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -953,7 +972,7 @@ GameObject:
   - component: {fileID: 999879746}
   - component: {fileID: 999879747}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: ELifeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1045,7 +1064,7 @@ GameObject:
   - component: {fileID: 1031248969}
   - component: {fileID: 1031248968}
   m_Layer: 5
-  m_Name: LvlText (TMP)
+  m_Name: ELvlText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1286,6 +1305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fa356b61ea2c548957bd936da1a976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: Red
+  Level: 2
   maxLifePoints: 20
   currentLifePoints: 20
   isAlife: 1
@@ -1423,7 +1444,7 @@ GameObject:
   - component: {fileID: 1264566994}
   - component: {fileID: 1264566993}
   m_Layer: 5
-  m_Name: NameText (TMP)
+  m_Name: PNameText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1558,7 +1579,7 @@ GameObject:
   - component: {fileID: 1322585454}
   - component: {fileID: 1322585453}
   m_Layer: 5
-  m_Name: NameText (TMP)
+  m_Name: ENameText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1951,6 +1972,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f65ffc70db923c41995130a87ace715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: Blue
+  Level: 5
   maxLifePoints: 20
   currentLifePoints: 20
   isAlife: 1

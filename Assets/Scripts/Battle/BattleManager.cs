@@ -10,8 +10,28 @@ public class BattleManager : MonoBehaviour
     int playMaxLife;
     int enemyMaxLife;
 
+    public int PlayerMaxLife()
+    {
+        return playMaxLife;
+    }
+
+    public int EnemyMaxLife()
+    {
+        return enemyMaxLife;
+    }
+
     int playerCurrentLife;
     int enemyCurrentLife;
+
+    public int PlayerCurrentLife()
+    {
+        return playerCurrentLife;
+    }
+
+    public int EnemyCurrentLife()
+    {
+        return enemyCurrentLife;
+    }
 
     int playerIni;
     int enemyIni;
@@ -34,8 +54,7 @@ public class BattleManager : MonoBehaviour
         End
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //StartIntro
         //LoadPlayer
@@ -44,6 +63,11 @@ public class BattleManager : MonoBehaviour
         //LoadEnemy
         enemyMaxLife = enemy.maxLifePoints;
         enemyCurrentLife = enemy.currentLifePoints;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {        
         //LoadStatsForCounter
         playerIni = player.GetInitiave();
         enemyIni = enemy.GetInitiave();
@@ -65,7 +89,7 @@ public class BattleManager : MonoBehaviour
         //Counting
     }
 
-    void InspectState()
+    void InspectState() //looks for State Equallity
     {
         if(AreStatesEqual(battleState, lastBattleState))
         {
@@ -79,17 +103,33 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    void InspectLife()
+    void InspectLife() //looks for teh death of one fighter
     {
         playerCurrentLife = player.currentLifePoints;
         enemyCurrentLife = enemy.currentLifePoints;
-        if ((battleState == BattleStates.PlayerTurnEnd || battleState == BattleStates.EnemyTurnEnd) && (playerCurrentLife == 0 || enemyCurrentLife == 0))
-        {
-            SetEnd();
-        }
-    }
 
-    bool AreStatesEqual(BattleStates S, BattleStates LS)
+        if (playerCurrentLife <= 0 || enemyCurrentLife <= 0)
+        {
+            if (playerCurrentLife <= 0 && enemyCurrentLife <= 0)
+            {
+                SetEnemyWin();
+            }
+            else if (playerCurrentLife >= 0 && enemyCurrentLife <= 0)
+            {
+                SetPlayerWin();
+            }
+            else if (playerCurrentLife <= 0 && enemyCurrentLife >= 0)
+            {
+                SetEnemyWin();
+            }
+        }
+        else
+        {
+            return;
+        }
+    } 
+
+    bool AreStatesEqual(BattleStates S, BattleStates LS) //State Equal test
     {
         if(S == LS)
         {
@@ -99,9 +139,9 @@ public class BattleManager : MonoBehaviour
         {
             return false;
         }
-    }
+    } 
 
-    void EqualStateSwitch()
+    void EqualStateSwitch() //switch if states equal, waiting for updates
     {
         switch ((int)battleState) 
         {
@@ -156,9 +196,9 @@ public class BattleManager : MonoBehaviour
                 break;
         }
         
-    }
+    } 
 
-    void UnequalStateSwitch()
+    void UnequalStateSwitch() //switch if states unequal, checking if something is new
     {
         switch ((int)battleState)
         {
@@ -223,7 +263,7 @@ public class BattleManager : MonoBehaviour
                 break;
         }
 
-    }
+    } 
 
     void SetCounterNext()
     {
@@ -271,7 +311,7 @@ public class BattleManager : MonoBehaviour
         battleState = BattleStates.End;
     } //not in use
 
-    void CheckTurnCount()
+    void CheckTurnCount() //Check if Counter is right for someones turn
     {
         if (counter % playerIni == 0 || counter % enemyIni == 0)
         {
@@ -302,7 +342,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    void InTurnCheck()
+    void InTurnCheck() //Check in turn if enemy/player finished their attack
     {
         if (battleState == BattleStates.PlayerTurn)
         {
@@ -336,9 +376,9 @@ public class BattleManager : MonoBehaviour
                 lastBattleState = battleState;
             }
         }
-    }
+    } 
 
-    void TurnEndEqualIniCheck()
+    void TurnEndEqualIniCheck() //Check if both fighters got a turn this counter
     {
         if (battleState == BattleStates.PlayerTurnEnd)
         {

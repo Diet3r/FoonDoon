@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemyBattle : MonoBehaviour
 {
+    public string Name = "Red";
+    public int Level = 2;
     public int maxLifePoints = 20;
     public int currentLifePoints = 20;
     public bool isAlife = true;

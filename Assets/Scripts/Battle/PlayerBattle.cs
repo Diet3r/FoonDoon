@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerBattle: MonoBehaviour
 {
+    public string Name = "Blue";
+    public int Level = 5;
     public int maxLifePoints = 20;
     public int currentLifePoints = 20;
     public bool isAlife = true;
