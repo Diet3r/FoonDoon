@@ -11,6 +11,12 @@ public class PlayerBattle: MonoBehaviour
     public int maxEnergyPoints = 20;
     public int currentEnergyPoints = 20;
 
+    int normalIni = 2;
+    int modifierIni = 0;
+
+    public bool isAttacking = false;
+    public bool finAttacking = false;
+
     [SerializeField]List<int> attacksLearned = new List<int>();
 
     public string attackName = "Hau";
@@ -48,5 +54,10 @@ public class PlayerBattle: MonoBehaviour
     bool IsDamageAttack()
     {
         return isDamageAttack; 
+    }
+
+    public int GetInitiave()
+    {
+        return normalIni + modifierIni;
     }
 }
