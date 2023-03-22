@@ -10,15 +10,20 @@ public class BattleOverlay : MonoBehaviour
     PlayerBattle player;
     EnemyBattle enemy;
 
+    [SerializeField] GameObject StandardOverlay;
+    [SerializeField] GameObject TurnOverlay;
+
     [Header("Player")]
-    [SerializeField] TextMeshPro playerNameText;
-    [SerializeField] TextMeshPro playerLevelText;
+    [SerializeField] TextMeshProUGUI playerNameText;
+    [SerializeField] TextMeshProUGUI playerLevelText;
     [SerializeField] Slider playerHealthSlider;
 
     [Header("Enemy")]
-    [SerializeField] TextMeshPro enemyNameText;
-    [SerializeField] TextMeshPro enemyLevelText;
+    [SerializeField] TextMeshProUGUI enemyNameText;
+    [SerializeField] TextMeshProUGUI enemyLevelText;
     [SerializeField] Slider enemyHealthSlider;
+
+    int battleState;
     
     // Start is called before the first frame update
     void Start()
@@ -30,20 +35,37 @@ public class BattleOverlay : MonoBehaviour
         playerHealthSlider.maxValue = battleManager.PlayerMaxLife();
         playerHealthSlider.minValue = 0;
         playerHealthSlider.value = battleManager.PlayerCurrentLife();
-        //playerNameText.text = player.Name;
-        //playerLevelText.text = player.Level.ToString();
+        playerNameText.text = player.Name;
+        playerLevelText.text = "Lv. " + player.Level.ToString();
         
         enemyHealthSlider.maxValue = battleManager.EnemyMaxLife();
         enemyHealthSlider.minValue = 0;
         enemyHealthSlider.value += battleManager.EnemyCurrentLife();
-        //enemyNameText.text = enemy.Name;
-        //enemyLevelText.text = enemy.Level.ToString();
+        enemyNameText.text = enemy.Name;
+        enemyLevelText.text = "Lv. " + enemy.Level.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerHealthSlider.value = battleManager.PlayerCurrentLife();
-        enemyHealthSlider.value += battleManager.EnemyCurrentLife();
+
+    }
+
+    public void LifeUpdate()
+    {
+            playerHealthSlider.value = battleManager.PlayerCurrentLife();
+            enemyHealthSlider.value = battleManager.EnemyCurrentLife();    
+    }
+
+    public void ActivatePlayerTurnOverlay()
+    {
+        if (TurnOverlay.active)
+        {
+            return;
+        }
+        else
+        {
+            TurnOverlay.SetActive(true);
+        }
     }
 }

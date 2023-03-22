@@ -6,6 +6,7 @@ public class BattleManager : MonoBehaviour
 {
     [SerializeField] PlayerBattle player;
     [SerializeField] EnemyBattle enemy;
+    [SerializeField] BattleOverlay overlay;
 
     int playMaxLife;
     int enemyMaxLife;
@@ -41,6 +42,8 @@ public class BattleManager : MonoBehaviour
     int lastCounter = 0;
     BattleStates battleState = BattleStates.Intro; // 0 Intro, 1 CountNextTurn, 2 PlayerTurn, 3 EnemyTurn, 4 PlayerTurnEnd, 5 EnemyTurnEnd, 6 PlayerWin, 7 EnemyWin, 8 End;
     BattleStates lastBattleState = BattleStates.Intro; //combination of BS and lBS triggers action! (SEE INSPECTSTATE)
+
+    public int GetBattleStates() => (int)battleState;
     enum BattleStates
     {
         Intro,
@@ -154,46 +157,46 @@ public class BattleManager : MonoBehaviour
 
             case 2: 
                 {
+                    overlay.ActivatePlayerTurnOverlay();
+                    InTurnCheck();
+                }
+            break;
+            case 3:
+                { 
                     Debug.Log(battleState);
                     InTurnCheck();
                 }
             break;
-                case 3:
-                {
-                    Debug.Log(battleState);
-                    InTurnCheck();
-                }
-                break;
-                case 4:
+            case 4:
                 {
                     Debug.Log(battleState);
                 }
-                break;
-                case 5:
+            break;
+            case 5:
                 {
                     Debug.Log(battleState);
                 }
-                break;
-                case 6:
+            break;
+            case 6:
                 {
                     Debug.Log(battleState);
                 }
-                break;
-                case 7: 
+            break;
+            case 7: 
                 {
                     Debug.Log(battleState);
                 }
-                break;
-                case 8:
+            break;
+            case 8:
                 {
                     Debug.Log(battleState);                    
                 }
-                break;
-                default: 
+            break;
+            default: 
                 {
                     Debug.Log("Falscher BattleState wiederholt!!!!");
                 }
-                break;
+            break;
         }
         
     } 
@@ -208,18 +211,17 @@ public class BattleManager : MonoBehaviour
                     Debug.Log(battleState);
                     CheckTurnCount();
                 }
-                break;
-                case 2:
+            break;
+            case 2:
                 {
                     Debug.Log(battleState);
                     player.isAttacking = true; //attac starts
-
+                    overlay.ActivatePlayerTurnOverlay();
                     
-                    //ActivatePlayerFightOverlay
                     lastBattleState = battleState;
                 }
-                break;
-                case 3:
+            break;
+            case 3:
                 {
                     Debug.Log(battleState);
                     enemy.isAttacking = true; //attac starts
@@ -228,39 +230,39 @@ public class BattleManager : MonoBehaviour
                     //ActivatePlayerFightOverlay
                     lastBattleState = battleState;
                 }
-                break;
-                case 4:
+            break;
+            case 4:
                 {
                     Debug.Log(battleState);
                     TurnEndEqualIniCheck();
                 }
-                break;
-                case 5:
+            break;
+            case 5:
                 {
                     Debug.Log(battleState);
                     TurnEndEqualIniCheck();
                 }
-                break;
-                case 6:
+            break;
+            case 6:
                 {
                     Debug.Log(battleState);
                 }
-                break;
-                case 7:
+            break;
+            case 7:
                 {
                     Debug.Log(battleState);
                 }
-                break;
-                case 8: 
+            break;
+            case 8: 
                 {
                     Debug.Log(battleState);
                 }
-                break;
+            break;
             default:
                 {
                     Debug.LogError("Falscher BattleState!!!!");
                 }
-                break;
+            break;
         }
 
     } 
@@ -349,7 +351,6 @@ public class BattleManager : MonoBehaviour
             if (player.finAttacking)
             {
                 enemy.currentLifePoints -= 5;
-                Debug.Log("Player finished Attack!");
                 lastBattleState = battleState;
                 player.finAttacking = false;
                 player.isAttacking = false;

@@ -19,7 +19,7 @@ public class PlayerBattle: MonoBehaviour
     public bool isAttacking = false;
     public bool finAttacking = false;
 
-    [SerializeField]List<int> attacksLearned = new List<int>();
+    public List<int> attacksLearned = new List<int>();
 
     public string attackName = "Hau";
     public bool isDamageAttack = true;
