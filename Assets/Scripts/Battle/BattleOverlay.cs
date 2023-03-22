@@ -17,11 +17,13 @@ public class BattleOverlay : MonoBehaviour
     [SerializeField] TextMeshProUGUI playerNameText;
     [SerializeField] TextMeshProUGUI playerLevelText;
     [SerializeField] Slider playerHealthSlider;
+    [SerializeField] Slider playerEnergySlider;
 
     [Header("Enemy")]
     [SerializeField] TextMeshProUGUI enemyNameText;
     [SerializeField] TextMeshProUGUI enemyLevelText;
     [SerializeField] Slider enemyHealthSlider;
+    [SerializeField] Slider enemyEnergySlider;
 
     int battleState;
     
@@ -55,6 +57,11 @@ public class BattleOverlay : MonoBehaviour
     {
             playerHealthSlider.value = battleManager.PlayerCurrentLife();
             enemyHealthSlider.value = battleManager.EnemyCurrentLife();    
+    }
+
+    public void EnergyUpdate()
+    {
+
     }
 
     public void ActivatePlayerTurnOverlay()

@@ -19,12 +19,7 @@ public class PlayerBattle: MonoBehaviour
     public bool isAttacking = false;
     public bool finAttacking = false;
 
-    public List<int> attacksLearned = new List<int>();
-
-    public string attackName = "Hau";
-    public bool isDamageAttack = true;
-    public int attackDamage = 10;
-    public int attackEnergyCost = 5;
+    [SerializeField] List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
 
     // Start is called before the first frame update
     void Start()
@@ -51,11 +46,6 @@ public class PlayerBattle: MonoBehaviour
     void SetCurrentLifePoints(int change)
     {
         currentLifePoints += change;
-    }
-
-    bool IsDamageAttack()
-    {
-        return isDamageAttack; 
     }
 
     public int GetInitiave()

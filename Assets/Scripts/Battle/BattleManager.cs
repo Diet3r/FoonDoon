@@ -8,12 +8,12 @@ public class BattleManager : MonoBehaviour
     [SerializeField] EnemyBattle enemy;
     [SerializeField] BattleOverlay overlay;
 
-    int playMaxLife;
+    int playerMaxLife;
     int enemyMaxLife;
 
     public int PlayerMaxLife()
     {
-        return playMaxLife;
+        return playerMaxLife;
     }
 
     public int EnemyMaxLife()
@@ -33,7 +33,7 @@ public class BattleManager : MonoBehaviour
     {
         return enemyCurrentLife;
     }
-
+        
     int playerIni;
     int enemyIni;
     public bool isPlayerFaster = true;
@@ -61,7 +61,7 @@ public class BattleManager : MonoBehaviour
     {
         //StartIntro
         //LoadPlayer
-        playMaxLife = player.maxLifePoints;
+        playerMaxLife = player.maxLifePoints;
         playerCurrentLife = player.currentLifePoints;
         //LoadEnemy
         enemyMaxLife = enemy.maxLifePoints;
