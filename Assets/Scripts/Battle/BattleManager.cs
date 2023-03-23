@@ -8,6 +8,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] EnemyBattle enemy;
     [SerializeField] BattleOverlay overlay;
 
+    [SerializeField] CreaturesScriptableObjects playerSO;
+    [SerializeField] CreaturesScriptableObjects enemySO;
+
     int playerMaxLife;
     int enemyMaxLife;
 
@@ -215,7 +218,6 @@ public class BattleManager : MonoBehaviour
             case 2:
                 {
                     Debug.Log(battleState);
-                    player.isAttacking = true; //attac starts
                     overlay.ActivatePlayerTurnOverlay();
                     
                     lastBattleState = battleState;
@@ -224,8 +226,6 @@ public class BattleManager : MonoBehaviour
             case 3:
                 {
                     Debug.Log(battleState);
-                    enemy.isAttacking = true; //attac starts
-
 
                     //ActivatePlayerFightOverlay
                     lastBattleState = battleState;
@@ -350,10 +350,9 @@ public class BattleManager : MonoBehaviour
         {
             if (player.finAttacking)
             {
-                enemy.currentLifePoints -= 5;
                 lastBattleState = battleState;
                 player.finAttacking = false;
-                player.isAttacking = false;
+                //player.FinishAttacking();
                 battleState = BattleStates.PlayerTurnEnd;
             }
             else
@@ -365,11 +364,9 @@ public class BattleManager : MonoBehaviour
         {
             if (enemy.finAttacking) 
             {
-                player.currentLifePoints -= 5;
-                Debug.Log("Enemy finished Attack!");
                 lastBattleState = battleState;
                 enemy.finAttacking = false;
-                enemy.isAttacking = false;
+                //enemy.FinishAttackin();
                 battleState = BattleStates.EnemyTurnEnd;
             }
             else
@@ -404,4 +401,35 @@ public class BattleManager : MonoBehaviour
             }
         }
     }    
+        
+    /// <summary>
+    /// Hier ist noch lange nicht ende, Angriffsystem überdenken
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="healthChange"></param>
+    public void FighterAttackChoice(int x, int healthChange)
+    {
+        if (battleState == BattleStates.PlayerTurn)
+        {
+            if (player.skillsLearned[x].isAttack)
+            {
+                enemy.DamageTaken(healthChange);
+            }
+            else if (player.skillsLearned[x].isBuff)
+            {
+                player.HealTaken(healthChange);
+            }
+        }
+        if (battleState == BattleStates.EnemyTurn)
+        {
+            if (enemy.skillsLearned[x].isAttack)
+            {
+                player.DamageTaken(healthChange);
+            }
+            else if (enemy.skillsLearned[x].isBuff)
+            {
+                enemy.HealTaken(healthChange);
+            }
+        }
+    }
 }

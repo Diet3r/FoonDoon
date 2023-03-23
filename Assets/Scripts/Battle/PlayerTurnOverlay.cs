@@ -8,10 +8,13 @@ public class PlayerTurnOverlay : MonoBehaviour
     [SerializeField] GameObject TurnStart;
     [SerializeField] GameObject TurnAttack;
     [SerializeField] GameObject TurnBackpack;
+
+    [SerializeField] List<GameObject> attackButtons = new List<GameObject>(); 
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<PlayerBattle>();
+        DeactivateUnusedAttackButtons();
     }
 
     // Update is called once per frame
@@ -26,6 +29,15 @@ public class PlayerTurnOverlay : MonoBehaviour
         TurnAttack.SetActive(false);
         TurnBackpack.SetActive(false);
         
+    }
+
+    public void DeactivateUnusedAttackButtons()
+    {
+        int unusedButtons = attackButtons.Count - player.skillsLearned.Count;
+        for (int i = 0; i < unusedButtons; i++)
+        {
+            attackButtons[i].SetActive(false);
+        }
     }
 
     public void StartAttackSelection()
@@ -55,5 +67,6 @@ public class PlayerTurnOverlay : MonoBehaviour
     public void SelectAttack(int x)
     {
         Debug.Log("Attack[" + x + "] activated!");
+                
     }
 }

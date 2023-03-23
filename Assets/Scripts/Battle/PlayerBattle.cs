@@ -16,40 +16,21 @@ public class PlayerBattle: MonoBehaviour
     int normalIni = 2;
     int modifierIni = 0;
 
-    public bool isAttacking = false;
     public bool finAttacking = false;
 
-    [SerializeField] List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    int GetMaxLifePoints()
-    {
-        return maxLifePoints;
-    }
-
-    int GetCurrentLifePoints() 
-    {
-        return currentLifePoints;
-    }
-
-    void SetCurrentLifePoints(int change)
-    {
-        currentLifePoints += change;
-    }
+    public List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
 
     public int GetInitiave()
     {
         return normalIni + modifierIni;
     }
+    public void DamageTaken(int damage)
+    {
+        currentLifePoints -= damage;
+    }
+
+    public void HealTaken(int heal)
+    {
+        currentLifePoints += heal;
+    }        
 }

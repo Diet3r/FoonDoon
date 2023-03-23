@@ -4457,7 +4457,8 @@ MonoBehaviour:
   currentEnergyPoints: 20
   isAttacking: 0
   finAttacking: 0
-  skillsLearned: []
+  skillsLearned:
+  - {fileID: 11400000, guid: f53b576fdce01674e933e2ca4dc17f30, type: 2}
 --- !u!1 &1454432596
 GameObject:
   m_ObjectHideFlags: 0

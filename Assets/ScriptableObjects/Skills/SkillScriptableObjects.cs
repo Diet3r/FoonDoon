@@ -6,10 +6,13 @@ using UnityEngine;
 public class SkillScriptableObjects : ScriptableObject
 {
     public int skillID;
+    public int skillAnimationID;
     public string skillName;
     
     public bool useableOnWorld;
     public bool isAttack;
+    public bool isDebuff;
+    public bool isBuff;
     public bool isOverTime;
      
     public int physDMG;

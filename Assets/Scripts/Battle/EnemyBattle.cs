@@ -13,18 +13,13 @@ public class EnemyBattle : MonoBehaviour
     public int maxEnergyPoints = 20;
     public int currentEnergyPoints = 20;
 
-    int normalIni = 2;
-    int modifierIni = 3;
+    public int normalIni = 2;
+    public int modifierIni = 3;
 
-    public bool isAttacking = false;
     public bool finAttacking = false;
 
-    [SerializeField] List<int> attacksLearned = new List<int>();
+    public List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
 
-    public string attackName = "Hau";
-    public bool isDamageAttack = true;
-    public int attackDamage = 10;
-    public int attackEnergyCost = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -38,40 +33,18 @@ public class EnemyBattle : MonoBehaviour
 
     }
 
-    int GetMaxLifePoints()
-    {
-        return maxLifePoints;
-    }
-
-    int GetCurrentLifePoints()
-    {
-        return currentLifePoints;
-    }
-
-    void SetAlifeCheck()
-    {
-        if(currentLifePoints <= 0)
-        {
-            isAlife = false;
-        }
-    }
-
-    void SetCurrentLifePoints(int change)
-    {
-        currentLifePoints += change;
-    }
-
-    bool IsDamageAttack()
-    {
-        return isDamageAttack;
-    }
-
-    int AttackOne()
-    {
-        return 5;
-    }
     public int GetInitiave()
     {
         return normalIni + modifierIni;
+    }
+
+    public void DamageTaken(int damage)
+    {
+        currentLifePoints -= damage;
+    }
+
+    public void HealTaken(int heal)
+    {
+        currentLifePoints += heal;
     }
 }
