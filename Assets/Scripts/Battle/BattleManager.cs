@@ -8,9 +8,6 @@ public class BattleManager : MonoBehaviour
     [SerializeField] EnemyBattle enemy;
     [SerializeField] BattleOverlay overlay;
 
-    [SerializeField] CreaturesScriptableObjects playerSO;
-    [SerializeField] CreaturesScriptableObjects enemySO;
-
     int playerMaxLife;
     int enemyMaxLife;
 
@@ -60,7 +57,15 @@ public class BattleManager : MonoBehaviour
         End
     }
 
-    void Awake()
+    private void Awake()
+    {
+        player = FindAnyObjectByType<PlayerBattle>();
+        enemy = FindAnyObjectByType<EnemyBattle>();
+        overlay = FindAnyObjectByType<BattleOverlay>();
+    }
+
+    // Start is called before the first frame update
+    void Start()
     {
         //StartIntro
         //LoadPlayer
@@ -69,11 +74,7 @@ public class BattleManager : MonoBehaviour
         //LoadEnemy
         enemyMaxLife = enemy.maxLifePoints;
         enemyCurrentLife = enemy.currentLifePoints;
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {        
         //LoadStatsForCounter
         playerIni = player.GetInitiave();
         enemyIni = enemy.GetInitiave();

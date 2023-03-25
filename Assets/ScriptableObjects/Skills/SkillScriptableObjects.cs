@@ -15,22 +15,23 @@ public class SkillScriptableObjects : ScriptableObject
     public bool isBuff;
     public bool isOverTime;
      
-    public int physDMG;
-    public int magicDMG;
-    public int eleDMG;
-    public enum EleTypes
-    {
-        Fire,
-        Water,
-        Lightning,
-        Wind,
-        Earth,
-        Toxic,
-        Dragon,
-        Light,
-        Darkness
-    }
-    public EleTypes eleType;
-    public int overTimeDMG;
-    public int overTimeRounds;    
+    public int PhysDMG;
+    //public int magicDMG;
+    //public int eleDMG;
+    //public enum EleTypes
+    //{
+    //    None,
+    //    Fire,
+    //    Water,
+    //    Lightning,
+    //    Wind,
+    //    Earth,
+    //    Toxic,
+    //    Dragon,
+    //    Light,
+    //    Darkness
+    //}
+    //public EleTypes eleType;
+    //public int overTimeDMG;
+    //public int overTimeRounds;    
 }

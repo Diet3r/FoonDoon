@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerTurnOverlay : MonoBehaviour
 {
-    PlayerBattle player;
+    [SerializeField] PlayerBattle player;
     [SerializeField] GameObject TurnStart;
     [SerializeField] GameObject TurnAttack;
     [SerializeField] GameObject TurnBackpack;
@@ -14,7 +14,7 @@ public class PlayerTurnOverlay : MonoBehaviour
     void Start()
     {
         player = GetComponent<PlayerBattle>();
-        DeactivateUnusedAttackButtons();
+        //DeactivateUnusedAttackButtons();
     }
 
     // Update is called once per frame

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBattle: MonoBehaviour
+public class PlayerBattle : MonoBehaviour
 {
     public string Name = "Blue";
     public int Level = 5;
@@ -16,9 +16,12 @@ public class PlayerBattle: MonoBehaviour
     int normalIni = 2;
     int modifierIni = 0;
 
+    int normalAtk = 3;
+    int normalDef = 3;
+
     public bool finAttacking = false;
 
-    public List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
+    [SerializeField] public List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
 
     public int GetInitiave()
     {
@@ -32,5 +35,10 @@ public class PlayerBattle: MonoBehaviour
     public void HealTaken(int heal)
     {
         currentLifePoints += heal;
-    }        
+    }      
+    
+    public int UseSkill(int skillIndex)
+    {
+        return skillsLearned[skillIndex].PhysDMG * normalAtk;
+    }
 }

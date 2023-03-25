@@ -13,8 +13,8 @@ public class EnemyBattle : MonoBehaviour
     public int maxEnergyPoints = 20;
     public int currentEnergyPoints = 20;
 
-    public int normalIni = 2;
-    public int modifierIni = 3;
+    int normalIni = 2;
+    int modifierIni = 3;
 
     public bool finAttacking = false;
 
