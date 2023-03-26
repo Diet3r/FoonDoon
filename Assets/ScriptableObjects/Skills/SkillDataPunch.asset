@@ -14,15 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillID: 0
   skillAnimationID: 0
-  skillName: 
+  skillName: Punch
   useableOnWorld: 0
-  isAttack: 0
+  isAttack: 1
   isDebuff: 0
   isBuff: 0
   isOverTime: 0
-  physDMG: 0
-  magicDMG: 0
-  eleDMG: 0
-  eleType: 0
-  overTimeDMG: 0
-  overTimeRounds: 0
+  PhysDMG: 2

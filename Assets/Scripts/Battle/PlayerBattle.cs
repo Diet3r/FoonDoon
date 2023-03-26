@@ -36,9 +36,26 @@ public class PlayerBattle : MonoBehaviour
     {
         currentLifePoints += heal;
     }      
-    
+
     public int UseSkill(int skillIndex)
     {
+        if (skillsLearned[skillIndex].isAttack)
+        {
+            return 1;
+        }
+        else if (skillsLearned[skillIndex].isBuff)
+        {
+            return 2;
+        }
+        else
+        {
+            return 0;
+        }        
+    }
+    
+    public int UseAttack(int skillIndex)
+    {
+        Debug.Log("Spieler macht Schaden in höhe von " + skillsLearned[skillIndex].PhysDMG * normalAtk);
         return skillsLearned[skillIndex].PhysDMG * normalAtk;
     }
 }

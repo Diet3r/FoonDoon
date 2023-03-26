@@ -75,4 +75,16 @@ public class BattleOverlay : MonoBehaviour
             TurnOverlay.SetActive(true);
         }
     }
+
+    public void DeactivatePlayerTurnOverlay()
+    {
+        if (TurnOverlay.active)
+        {
+            TurnOverlay.SetActive(false);
+        }
+        else
+        {
+            return;
+        }
+    }
 }

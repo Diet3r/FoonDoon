@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    [SerializeField] PlayerBattle player;
-    [SerializeField] EnemyBattle enemy;
-    [SerializeField] BattleOverlay overlay;
+    PlayerBattle player;
+    EnemyBattle enemy;
+    BattleOverlay overlay;
 
     int playerMaxLife;
     int enemyMaxLife;
@@ -41,7 +41,7 @@ public class BattleManager : MonoBehaviour
     int counter = 0;
     int lastCounter = 0;
     BattleStates battleState = BattleStates.Intro; // 0 Intro, 1 CountNextTurn, 2 PlayerTurn, 3 EnemyTurn, 4 PlayerTurnEnd, 5 EnemyTurnEnd, 6 PlayerWin, 7 EnemyWin, 8 End;
-    BattleStates lastBattleState = BattleStates.Intro; //combination of BS and lBS triggers action! (SEE INSPECTSTATE)
+    BattleStates lastBattleState = BattleStates.Intro; //state before this
 
     public int GetBattleStates() => (int)battleState;
     enum BattleStates
@@ -59,9 +59,9 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        player = FindAnyObjectByType<PlayerBattle>();
-        enemy = FindAnyObjectByType<EnemyBattle>();
-        overlay = FindAnyObjectByType<BattleOverlay>();
+        player = FindObjectOfType<PlayerBattle>();
+        enemy = FindObjectOfType<EnemyBattle>();
+        overlay = FindObjectOfType<BattleOverlay>();
     }
 
     // Start is called before the first frame update
@@ -166,7 +166,7 @@ public class BattleManager : MonoBehaviour
                 }
             break;
             case 3:
-                { 
+                {
                     Debug.Log(battleState);
                     InTurnCheck();
                 }
@@ -227,20 +227,23 @@ public class BattleManager : MonoBehaviour
             case 3:
                 {
                     Debug.Log(battleState);
+                    enemy.IsTurn();
 
-                    //ActivatePlayerFightOverlay
                     lastBattleState = battleState;
                 }
             break;
             case 4:
                 {
                     Debug.Log(battleState);
+                    overlay.LifeUpdate();
+                    overlay.DeactivatePlayerTurnOverlay();
                     TurnEndEqualIniCheck();
                 }
             break;
             case 5:
                 {
                     Debug.Log(battleState);
+                    overlay.LifeUpdate();
                     TurnEndEqualIniCheck();
                 }
             break;
@@ -353,7 +356,6 @@ public class BattleManager : MonoBehaviour
             {
                 lastBattleState = battleState;
                 player.finAttacking = false;
-                //player.FinishAttacking();
                 battleState = BattleStates.PlayerTurnEnd;
             }
             else
@@ -367,7 +369,6 @@ public class BattleManager : MonoBehaviour
             {
                 lastBattleState = battleState;
                 enemy.finAttacking = false;
-                //enemy.FinishAttackin();
                 battleState = BattleStates.EnemyTurnEnd;
             }
             else
@@ -401,36 +402,57 @@ public class BattleManager : MonoBehaviour
                 SetCounterNext();
             }
         }
-    }    
-        
-    /// <summary>
-    /// Hier ist noch lange nicht ende, Angriffsystem überdenken
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="healthChange"></param>
-    public void FighterAttackChoice(int x, int healthChange)
+    } 
+
+    public void FighterChoice(int PE, int skillIndex)
     {
-        if (battleState == BattleStates.PlayerTurn)
+        if (PE == 1)
         {
-            if (player.skillsLearned[x].isAttack)
-            {
-                enemy.DamageTaken(healthChange);
+            switch (player.UseSkill(skillIndex))
+            {                
+                case 1:
+                {
+                        enemy.DamageTaken(player.UseAttack(skillIndex));
+                }
+                    break;
+                case 2:
+                {
+                        player.HealTaken(player.UseAttack(skillIndex));
+                }
+                    break;
+                default:
+                {
+                    Debug.Log("Attacke kann nichts!");
+                }
+                    break;
             }
-            else if (player.skillsLearned[x].isBuff)
-            {
-                player.HealTaken(healthChange);
-            }
+            player.finAttacking = true;
         }
-        if (battleState == BattleStates.EnemyTurn)
+        else if (PE == 2)
         {
-            if (enemy.skillsLearned[x].isAttack)
+            switch (enemy.UseSkill(skillIndex))
             {
-                player.DamageTaken(healthChange);
+                case 1:
+                    {
+                        player.DamageTaken(enemy.UseAttack(skillIndex));
+                    }
+                    break;
+                case 2:
+                    {
+                        enemy.HealTaken(enemy.UseAttack(skillIndex));
+                    }
+                    break;
+                default:
+                    {
+                        Debug.Log("Attacke kann nichts!");
+                    }
+                    break;
             }
-            else if (enemy.skillsLearned[x].isBuff)
-            {
-                enemy.HealTaken(healthChange);
-            }
+            enemy.finAttacking = true;
+        }
+        else
+        {
+            Debug.Log("FightersChoice von keinem?!");
         }
     }
 }

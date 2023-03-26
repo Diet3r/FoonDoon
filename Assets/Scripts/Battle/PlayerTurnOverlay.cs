@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class PlayerTurnOverlay : MonoBehaviour
 {
-    [SerializeField] PlayerBattle player;
+
+    PlayerBattle player;
+    BattleManager battleManager;
+
     [SerializeField] GameObject TurnStart;
     [SerializeField] GameObject TurnAttack;
     [SerializeField] GameObject TurnBackpack;
+
+    int isP = 1;
 
     [SerializeField] List<GameObject> attackButtons = new List<GameObject>(); 
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<PlayerBattle>();
+        player = FindObjectOfType<PlayerBattle>();
+        battleManager = FindObjectOfType<BattleManager>();
         //DeactivateUnusedAttackButtons();
     }
 
@@ -64,9 +70,9 @@ public class PlayerTurnOverlay : MonoBehaviour
         Debug.Log("Flieht ihr Narren!");
     }
 
-    public void SelectAttack(int x)
+    public void SelectAttack(int buttonNumber)
     {
-        Debug.Log("Attack[" + x + "] activated!");
-                
+        Debug.Log("Attack[" + buttonNumber + "] activated!");
+        battleManager.FighterChoice(isP, buttonNumber); 
     }
 }
