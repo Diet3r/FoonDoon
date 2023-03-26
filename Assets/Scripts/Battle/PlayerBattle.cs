@@ -27,6 +27,7 @@ public class PlayerBattle : MonoBehaviour
     {
         return normalIni + modifierIni;
     }
+
     public void DamageTaken(int damage)
     {
         currentLifePoints -= damage;

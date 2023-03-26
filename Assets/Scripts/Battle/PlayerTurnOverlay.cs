@@ -20,7 +20,7 @@ public class PlayerTurnOverlay : MonoBehaviour
     {
         player = FindObjectOfType<PlayerBattle>();
         battleManager = FindObjectOfType<BattleManager>();
-        //DeactivateUnusedAttackButtons();
+        DeactivateUnusedAttackButtons();
     }
 
     // Update is called once per frame
@@ -40,7 +40,8 @@ public class PlayerTurnOverlay : MonoBehaviour
     public void DeactivateUnusedAttackButtons()
     {
         int unusedButtons = attackButtons.Count - player.skillsLearned.Count;
-        for (int i = 0; i < unusedButtons; i++)
+        Debug.Log("Ungenutze Köppe " + unusedButtons);
+        for (int i = attackButtons.Count - 1; i > attackButtons.Count - unusedButtons - 1; i--)
         {
             attackButtons[i].SetActive(false);
         }

@@ -22,8 +22,6 @@ public class EnemyTurn : MonoBehaviour
         
     }
 
-    //erstelle eine funktion die einen Skill aus der liste auswählt und diesen dann ausführt
-
     public void UseSkill()
     {
         int skillIndex = Random.Range(0, enemy.skillsLearned.Count);
