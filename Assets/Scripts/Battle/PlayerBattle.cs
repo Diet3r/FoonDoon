@@ -8,11 +8,11 @@ public class PlayerBattle : MonoBehaviour
     [SerializeField] CreaturesScriptableObjects playerStats;
     List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
 
-    string Name = "Blue";
+    string Name;
     int Level;
     int maxLifePoints;
     int currentLifePoints;
-    bool isAlife = true;
+    bool isAlife;
 
     int maxEnergyPoints;
     int currentEnergyPoints;
@@ -51,6 +51,11 @@ public class PlayerBattle : MonoBehaviour
     public int GetLevel()
     {
         return Level;
+    }
+
+    public int GetNormalIni()
+    {
+        return normalIni;
     }
 
     public int GetInitiave()

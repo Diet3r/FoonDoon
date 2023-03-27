@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class BattleManager : MonoBehaviour
         
     int playerIni;
     int enemyIni;
-    public bool isPlayerFaster = true;
+    bool isPlayerFaster = true;
 
     int counter = 0;
     int lastCounter = 0;
@@ -56,28 +57,18 @@ public class BattleManager : MonoBehaviour
         EnemyWin,
         End
     }
-
     private void Awake()
     {
         player = FindObjectOfType<PlayerBattle>();
         enemy = FindObjectOfType<EnemyBattle>();
         overlay = FindObjectOfType<BattleOverlay>();
+        SetPELifeAndIni();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         //StartIntro
-        //LoadPlayer
-        playerMaxLife = player.GetMaxLifepoints();
-        playerCurrentLife = player.GetCurrentLifepoints();
-        //LoadEnemy
-        enemyMaxLife = enemy.GetMaxLifepoints();
-        enemyCurrentLife = enemy.GetCurrentLifepoints();
-
-        //LoadStatsForCounter
-        playerIni = player.GetInitiave();
-        enemyIni = enemy.GetInitiave();
         //Count and BattleState Start
         counter = 1;
         lastCounter = 0;
@@ -89,9 +80,28 @@ public class BattleManager : MonoBehaviour
     void Update()
     {
         InspectState();
-        //InspectLife
-        //GiveAtkRight
-        //Counting
+    }
+
+    void SetPELifeAndIni()
+    {
+        //LoadPlayer
+        playerMaxLife = player.GetMaxLifepoints();
+        playerCurrentLife = player.GetCurrentLifepoints();
+        //LoadEnemy
+        enemyMaxLife = enemy.GetMaxLifepoints();
+        enemyCurrentLife = enemy.GetCurrentLifepoints();
+
+        //LoadStatsForCounter
+        playerIni = player.GetInitiave();
+        enemyIni = enemy.GetInitiave();
+        if (player.GetNormalIni() >= enemy.GetNormalIni())
+        {
+            isPlayerFaster = true;
+        }
+        else
+        {
+            isPlayerFaster = false;
+        }
     }
 
     void InspectState() //looks for State Equallity
@@ -124,7 +134,7 @@ public class BattleManager : MonoBehaviour
         {
             case 1:
                 {
-                    CheckTurnCount();
+                    CheckTurnCountForAttack();
                 }
             break;
 
@@ -149,10 +159,12 @@ public class BattleManager : MonoBehaviour
             break;
             case 6:
                 {
+                    SetEnd();
                 }
             break;
             case 7: 
                 {
+                    SetEnd();
                 }
             break;
             case 8:
@@ -175,7 +187,7 @@ public class BattleManager : MonoBehaviour
             case 1:
                 {
                     Debug.Log(battleState);
-                    CheckTurnCount();
+                    CheckTurnCountForAttack();
                 }
             break;
             case 2:
@@ -223,6 +235,7 @@ public class BattleManager : MonoBehaviour
             case 8: 
                 {
                     Debug.Log(battleState);
+                    SceneManager.LoadScene("SampleWorld");
                 }
             break;
             default:
@@ -298,7 +311,7 @@ public class BattleManager : MonoBehaviour
         battleState = BattleStates.End;
     } //not in use
 
-    void CheckTurnCount() //Check if Counter is right for someones turn
+    void CheckTurnCountForAttack() //Check if Counter is right for someones turn
     {
         if (counter % playerIni == 0 || counter % enemyIni == 0)
         {

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BattleToggle : MonoBehaviour
 {
-
+    [SerializeField]List<CreaturesScriptableObjects> creatures = new List<CreaturesScriptableObjects>();
+    [SerializeField]CreaturesScriptableObjects enemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +24,14 @@ public class BattleToggle : MonoBehaviour
         {
             if (Random.Range(1, 101) <= 50)
             {
-                Debug.Log("No Battle toggled");
+                int i = Random.Range(0, creatures.Count);
+                enemy = creatures[i];
+                BattleCheck battleCheck = FindObjectOfType<BattleCheck>();
+                battleCheck.SetBattle(true);
             }
             else
             {
-                Debug.Log("Battle toggled");
+                Debug.Log("Battle not toggled");
             }
         }
     }

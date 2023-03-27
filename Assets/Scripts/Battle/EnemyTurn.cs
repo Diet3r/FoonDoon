@@ -16,12 +16,6 @@ public class EnemyTurn : MonoBehaviour
         battleManager = FindObjectOfType<BattleManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void UseSkill()
     {
         int skillIndex = Random.Range(0, enemy.GetSkillsLearned().Count);

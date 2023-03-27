@@ -70,6 +70,11 @@ public class EnemyBattle : MonoBehaviour
         return Level;
     }
 
+    public int GetNormalIni()
+    {
+        return normalIni;
+    }
+
     public int GetInitiave()
     {
         return normalIni + modifierIni;
