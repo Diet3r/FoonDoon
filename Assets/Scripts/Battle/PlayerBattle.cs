@@ -2,51 +2,121 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBattle: MonoBehaviour
+public class PlayerBattle : MonoBehaviour
 {
-    public int maxLifePoints = 20;
-    public int currentLifePoints = 20;
-    public bool isAlife = true;
 
-    public int maxEnergyPoints = 20;
-    public int currentEnergyPoints = 20;
+    [SerializeField] CreaturesScriptableObjects playerStats;
+    List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
 
-    [SerializeField]List<int> attacksLearned = new List<int>();
+    string Name = "Blue";
+    int Level;
+    int maxLifePoints;
+    int currentLifePoints;
+    bool isAlife = true;
 
-    public string attackName = "Hau";
-    public bool isDamageAttack = true;
-    public int attackDamage = 10;
-    public int attackEnergyCost = 5;
+    int maxEnergyPoints;
+    int currentEnergyPoints;
 
-    // Start is called before the first frame update
-    void Start()
+    int normalIni;
+    int modifierIni;
+
+    int normalAtk;
+    int normalDef;
+
+    bool finAttacking = false;
+
+
+    private void Awake()
     {
-        
+        Name = playerStats.Name;
+        Level = playerStats.Level;
+        maxLifePoints = playerStats.maxLifePoints;
+        currentLifePoints = playerStats.currentLifePoints;
+        isAlife = playerStats.isAlife;
+        maxEnergyPoints = playerStats.maxEnergyPoints;
+        currentEnergyPoints = playerStats.currentEnergyPoints;
+        normalIni = playerStats.normalIni;
+        modifierIni = playerStats.modifierIni;
+        normalAtk = playerStats.normalAtk;
+        normalDef = playerStats.normalDef;
+        finAttacking = playerStats.finAttacking;
+        skillsLearned = playerStats.skillsLearned;
     }
 
-    // Update is called once per frame
-    void Update()
+    public string GetName()
     {
-        
+        return Name;
     }
 
-    int GetMaxLifePoints()
+    public int GetLevel()
+    {
+        return Level;
+    }
+
+    public int GetInitiave()
+    {
+        return normalIni + modifierIni;
+    }
+
+    public int GetMaxLifepoints()
     {
         return maxLifePoints;
     }
 
-    int GetCurrentLifePoints() 
+    public int GetCurrentLifepoints()
     {
         return currentLifePoints;
     }
 
-    void SetCurrentLifePoints(int change)
-    {
-        currentLifePoints += change;
+    public bool GetIsAlife()
+    { 
+        return isAlife;
     }
 
-    bool IsDamageAttack()
+    public bool GetFinAttack()
+    { 
+        return finAttacking;
+    }
+
+    public void SetFinAttack(bool b)
     {
-        return isDamageAttack; 
+        finAttacking = b;
+    }
+
+    public List<SkillScriptableObjects> GetSkillsLearned()
+    {
+        return skillsLearned;
+    }
+
+    public void DamageTaken(int damage)
+    {
+        currentLifePoints -= damage;
+    }
+
+    public void HealTaken(int heal)
+    {
+        currentLifePoints += heal;
+    }      
+
+    public int UseSkill(int skillIndex)
+    {
+        if (skillsLearned[skillIndex].isAttack)
+        {
+            return 1;
+        }
+        else if (skillsLearned[skillIndex].isBuff)
+        {
+            return 2;
+        }
+        else
+        {
+            return 0;
+        }        
+    }
+    
+    public int UseAttack(int skillIndex)
+    {
+        Debug.Log("Spieler macht Schaden in höhe von " + skillsLearned[skillIndex].PhysDMG * normalAtk);
+        return skillsLearned[skillIndex].PhysDMG * normalAtk;
     }
 }
