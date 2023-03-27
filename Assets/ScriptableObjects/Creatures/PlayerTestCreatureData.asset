@@ -16,7 +16,7 @@ MonoBehaviour:
   Level: 99
   maxLifePoints: 50
   currentLifePoints: 50
-  isAlife: 0
+  isAlife: 1
   maxEnergyPoints: 0
   currentEnergyPoints: 0
   normalIni: 2

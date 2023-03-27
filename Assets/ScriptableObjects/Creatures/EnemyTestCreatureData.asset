@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d3d6f2a429d74c9dc57d8f19b6e6f, type: 3}
   m_Name: EnemyTestCreatureData
   m_EditorClassIdentifier: 
-  Name: 
-  Level: 0
-  maxLifePoints: 0
-  currentLifePoints: 0
-  isAlife: 0
-  maxEnergyPoints: 0
-  currentEnergyPoints: 0
-  normalIni: 0
+  Name: Roter Block
+  Level: 50
+  maxLifePoints: 20
+  currentLifePoints: 20
+  isAlife: 1
+  maxEnergyPoints: 10
+  currentEnergyPoints: 4
+  normalIni: 3
   modifierIni: 0
-  normalAtk: 0
+  normalAtk: 2
   normalDef: 0
-  skillsLearned: []
+  skillsLearned:
+  - {fileID: 11400000, guid: fd99f503d82eb2d43b45f2224addff08, type: 2}

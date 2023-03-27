@@ -88,7 +88,6 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.LogWarning(counter + " / " + lastCounter);
         InspectState();
         //InspectLife
         //GiveAtkRight
