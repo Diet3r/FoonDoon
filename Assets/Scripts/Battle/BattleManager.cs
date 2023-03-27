@@ -69,11 +69,11 @@ public class BattleManager : MonoBehaviour
     {
         //StartIntro
         //LoadPlayer
-        playerMaxLife = player.maxLifePoints;
-        playerCurrentLife = player.currentLifePoints;
+        playerMaxLife = player.GetMaxLifepoints();
+        playerCurrentLife = player.GetCurrentLifepoints();
         //LoadEnemy
-        enemyMaxLife = enemy.maxLifePoints;
-        enemyCurrentLife = enemy.currentLifePoints;
+        enemyMaxLife = enemy.GetMaxLifepoints();
+        enemyCurrentLife = enemy.GetCurrentLifepoints();
 
         //LoadStatsForCounter
         playerIni = player.GetInitiave();
@@ -90,7 +90,6 @@ public class BattleManager : MonoBehaviour
     {
         Debug.LogWarning(counter + " / " + lastCounter);
         InspectState();
-        InspectLife();
         //InspectLife
         //GiveAtkRight
         //Counting
@@ -100,41 +99,13 @@ public class BattleManager : MonoBehaviour
     {
         if(AreStatesEqual(battleState, lastBattleState))
         {
-            Debug.Log("Equal! / " + battleState + " / " + lastBattleState);
             EqualStateSwitch();
         }
         else
         {
-            Debug.Log("UnEqual! / " + battleState + " / " + lastBattleState);
             UnequalStateSwitch();
         }
     }
-
-    void InspectLife() //looks for teh death of one fighter
-    {
-        playerCurrentLife = player.currentLifePoints;
-        enemyCurrentLife = enemy.currentLifePoints;
-
-        if (playerCurrentLife <= 0 || enemyCurrentLife <= 0)
-        {
-            if (playerCurrentLife <= 0 && enemyCurrentLife <= 0)
-            {
-                SetEnemyWin();
-            }
-            else if (playerCurrentLife >= 0 && enemyCurrentLife <= 0)
-            {
-                SetPlayerWin();
-            }
-            else if (playerCurrentLife <= 0 && enemyCurrentLife >= 0)
-            {
-                SetEnemyWin();
-            }
-        }
-        else
-        {
-            return;
-        }
-    } 
 
     bool AreStatesEqual(BattleStates S, BattleStates LS) //State Equal test
     {
@@ -154,7 +125,6 @@ public class BattleManager : MonoBehaviour
         {
             case 1:
                 {
-                    Debug.Log(battleState);
                     CheckTurnCount();
                 }
             break;
@@ -167,33 +137,27 @@ public class BattleManager : MonoBehaviour
             break;
             case 3:
                 {
-                    Debug.Log(battleState);
                     InTurnCheck();
                 }
             break;
             case 4:
                 {
-                    Debug.Log(battleState);
                 }
             break;
             case 5:
                 {
-                    Debug.Log(battleState);
                 }
             break;
             case 6:
                 {
-                    Debug.Log(battleState);
                 }
             break;
             case 7: 
                 {
-                    Debug.Log(battleState);
                 }
             break;
             case 8:
-                {
-                    Debug.Log(battleState);                    
+                {                
                 }
             break;
             default: 
@@ -211,7 +175,6 @@ public class BattleManager : MonoBehaviour
         {
             case 1:
                 {
-
                     Debug.Log(battleState);
                     CheckTurnCount();
                 }
@@ -219,8 +182,7 @@ public class BattleManager : MonoBehaviour
             case 2:
                 {
                     Debug.Log(battleState);
-                    overlay.ActivatePlayerTurnOverlay();
-                    
+                    overlay.ActivatePlayerTurnOverlay();                    
                     lastBattleState = battleState;
                 }
             break;
@@ -235,6 +197,7 @@ public class BattleManager : MonoBehaviour
             case 4:
                 {
                     Debug.Log(battleState);
+                    InspectLife();
                     overlay.LifeUpdate();
                     overlay.DeactivatePlayerTurnOverlay();
                     TurnEndEqualIniCheck();
@@ -243,6 +206,7 @@ public class BattleManager : MonoBehaviour
             case 5:
                 {
                     Debug.Log(battleState);
+                    InspectLife();
                     overlay.LifeUpdate();
                     TurnEndEqualIniCheck();
                 }
@@ -269,7 +233,29 @@ public class BattleManager : MonoBehaviour
             break;
         }
 
-    } 
+    }
+
+    void InspectLife() //looks for teh death of one fighter
+    {
+        playerCurrentLife = player.GetCurrentLifepoints();
+        enemyCurrentLife = enemy.GetCurrentLifepoints();
+
+        if (playerCurrentLife <= 0 || enemyCurrentLife <= 0)
+        {
+            if (playerCurrentLife <= 0)
+            {
+                SetEnemyWin();
+            }
+            else if (playerCurrentLife >= 0 && enemyCurrentLife <= 0)
+            {
+                SetPlayerWin();
+            }
+        }
+        else
+        {
+            return;
+        }
+    }
 
     void SetCounterNext()
     {
@@ -285,31 +271,27 @@ public class BattleManager : MonoBehaviour
 
     void SetPlayerTurn()
     {
-        Debug.Log(battleState + " " + lastBattleState);
         lastBattleState = battleState;
         battleState = BattleStates.PlayerTurn;
-        Debug.Log(battleState + " " + lastBattleState);
     }
 
     void SetEnemyTurn()
     {
-        Debug.Log(battleState + " " + lastBattleState);
         lastBattleState = battleState;
         battleState = BattleStates.EnemyTurn;
-        Debug.Log(battleState + " " + lastBattleState);
     }
 
     void SetPlayerWin()
     {
         lastBattleState = battleState;
         battleState = BattleStates.PlayerWin;
-    } //not in use
+    }
 
     void SetEnemyWin()
     {
         lastBattleState = battleState;
         battleState = BattleStates.EnemyWin;
-    } //not in use
+    }
 
     void SetEnd()
     {
@@ -350,30 +332,21 @@ public class BattleManager : MonoBehaviour
 
     void InTurnCheck() //Check in turn if enemy/player finished their attack
     {
+        lastBattleState = battleState;
         if (battleState == BattleStates.PlayerTurn)
         {
-            if (player.finAttacking)
+            if (player.GetFinAttack())
             {
-                lastBattleState = battleState;
-                player.finAttacking = false;
+                player.SetFinAttack(false);
                 battleState = BattleStates.PlayerTurnEnd;
-            }
-            else
-            {
-                lastBattleState = battleState;
             }
         }
         else if (battleState == BattleStates.EnemyTurn)
         {
-            if (enemy.finAttacking) 
+            if (enemy.GetFinAttack()) 
             {
-                lastBattleState = battleState;
-                enemy.finAttacking = false;
+                enemy.SetFinAttack(false);
                 battleState = BattleStates.EnemyTurnEnd;
-            }
-            else
-            {
-                lastBattleState = battleState;
             }
         }
     } 
@@ -426,7 +399,7 @@ public class BattleManager : MonoBehaviour
                 }
                     break;
             }
-            player.finAttacking = true;
+            player.SetFinAttack(true);
         }
         else if (PE == 2)
         {
@@ -448,7 +421,7 @@ public class BattleManager : MonoBehaviour
                     }
                     break;
             }
-            enemy.finAttacking = true;
+            enemy.SetFinAttack(true);
         }
         else
         {

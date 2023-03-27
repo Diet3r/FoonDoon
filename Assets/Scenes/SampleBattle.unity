@@ -869,9 +869,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 30
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1950,9 +1950,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 30
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -3026,9 +3026,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 30
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -3192,16 +3192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fa356b61ea2c548957bd936da1a976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Red
-  Level: 2
-  maxLifePoints: 20
-  currentLifePoints: 20
-  isAlife: 1
-  maxEnergyPoints: 20
-  currentEnergyPoints: 20
-  finAttacking: 0
-  skillsLearned:
-  - {fileID: 11400000, guid: fd99f503d82eb2d43b45f2224addff08, type: 2}
+  enemyStats: {fileID: 11400000, guid: ded963891d5336a4f94e0545ea812868, type: 2}
 --- !u!114 &1065916826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3339,9 +3330,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 30
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -3798,9 +3789,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 30
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -4461,17 +4452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f65ffc70db923c41995130a87ace715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Blue
-  Level: 5
-  maxLifePoints: 20
-  currentLifePoints: 20
-  isAlife: 1
-  maxEnergyPoints: 20
-  currentEnergyPoints: 20
-  finAttacking: 0
-  skillsLearned:
-  - {fileID: 11400000, guid: f53b576fdce01674e933e2ca4dc17f30, type: 2}
-  - {fileID: 11400000, guid: fd99f503d82eb2d43b45f2224addff08, type: 2}
+  playerStats: {fileID: 11400000, guid: 4ab0848266d6adb47806d951c081934e, type: 2}
 --- !u!1 &1454432596
 GameObject:
   m_ObjectHideFlags: 0
@@ -4636,9 +4617,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 30
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

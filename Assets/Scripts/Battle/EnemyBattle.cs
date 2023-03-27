@@ -4,27 +4,43 @@ using UnityEngine;
 
 public class EnemyBattle : MonoBehaviour
 {
+    [SerializeField] CreaturesScriptableObjects enemyStats;
     EnemyTurn enemyTurn;
+    List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
 
-    public string Name = "Red";
-    public int Level = 2;
-    public int maxLifePoints = 20;
-    public int currentLifePoints = 20;
-    public bool isAlife = true;
+    string Name;
+    int Level;
+    int maxLifePoints;
+    int currentLifePoints;
+    bool isAlife = true;
 
-    public int maxEnergyPoints = 20;
-    public int currentEnergyPoints = 20;
+    int maxEnergyPoints;
+    int currentEnergyPoints;
 
-    int normalIni = 2;
-    int modifierIni = 3;
+    int normalIni;
+    int modifierIni;
 
-    int normalAtk = 3;
-    int normalDef = 3;
+    int normalAtk;
+    int normalDef;
 
-    public bool finAttacking = false;
+    bool finAttacking = false;
 
-    public List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
-
+    private void Awake()
+    {
+        Name = enemyStats.Name;
+        Level = enemyStats.Level;
+        maxLifePoints = enemyStats.maxLifePoints;
+        currentLifePoints = enemyStats.currentLifePoints;
+        isAlife = enemyStats.isAlife;
+        maxEnergyPoints = enemyStats.maxEnergyPoints;
+        currentEnergyPoints = enemyStats.currentEnergyPoints;
+        normalIni = enemyStats.normalIni;
+        modifierIni = enemyStats.modifierIni;
+        normalAtk = enemyStats.normalAtk;
+        normalDef = enemyStats.normalDef;
+        finAttacking = enemyStats.finAttacking;
+        skillsLearned = enemyStats.skillsLearned;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -40,12 +56,52 @@ public class EnemyBattle : MonoBehaviour
 
     public void IsTurn()
     {
+        Debug.Log("Enemy is turn");
         enemyTurn.UseSkill();
+    }
+
+    public string GetName()
+    {
+        return Name;
+    }
+
+    public int GetLevel()
+    {
+        return Level;
     }
 
     public int GetInitiave()
     {
         return normalIni + modifierIni;
+    }
+
+    public int GetMaxLifepoints()
+    {
+        return maxLifePoints;
+    }
+
+    public int GetCurrentLifepoints()
+    {
+        return currentLifePoints;
+    }
+
+    public bool GetIsAlife()
+    {
+        return isAlife;
+    }
+
+    public bool GetFinAttack()
+    {
+        return finAttacking;
+    }
+
+    public void SetFinAttack(bool b)
+    {
+        finAttacking = b;
+    }
+    public List<SkillScriptableObjects> GetSkillsLearned()
+    {
+        return skillsLearned;
     }
 
     public void DamageTaken(int damage)

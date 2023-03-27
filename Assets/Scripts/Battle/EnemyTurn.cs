@@ -24,7 +24,7 @@ public class EnemyTurn : MonoBehaviour
 
     public void UseSkill()
     {
-        int skillIndex = Random.Range(0, enemy.skillsLearned.Count);
+        int skillIndex = Random.Range(0, enemy.GetSkillsLearned().Count);
         battleManager.FighterChoice(isE, skillIndex);
     }
 }

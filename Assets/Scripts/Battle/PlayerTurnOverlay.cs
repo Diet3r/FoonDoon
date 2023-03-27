@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerTurnOverlay : MonoBehaviour
@@ -15,12 +16,16 @@ public class PlayerTurnOverlay : MonoBehaviour
     int isP = 1;
 
     [SerializeField] List<GameObject> attackButtons = new List<GameObject>(); 
+    List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<PlayerBattle>();
         battleManager = FindObjectOfType<BattleManager>();
+        skillsLearned.Clear();
+        skillsLearned = player.GetSkillsLearned();
         DeactivateUnusedAttackButtons();
+        GiveButtonsAttackName();
     }
 
     // Update is called once per frame
@@ -39,11 +44,21 @@ public class PlayerTurnOverlay : MonoBehaviour
 
     public void DeactivateUnusedAttackButtons()
     {
-        int unusedButtons = attackButtons.Count - player.skillsLearned.Count;
+        int unusedButtons = attackButtons.Count - skillsLearned.Count;
         Debug.Log("Ungenutze Köppe " + unusedButtons);
         for (int i = attackButtons.Count - 1; i > attackButtons.Count - unusedButtons - 1; i--)
         {
             attackButtons[i].SetActive(false);
+        }
+    }
+
+    void GiveButtonsAttackName()
+    {
+        int i = 0;
+        foreach (SkillScriptableObjects skill in skillsLearned)
+        {
+            attackButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = skillsLearned[i].skillName;
+            i++;
         }
     }
 
@@ -56,7 +71,7 @@ public class PlayerTurnOverlay : MonoBehaviour
 
     public void StartBackpackSelection() 
     {
-        Debug.Log("Backpack not Loaded!");
+        Debug.LogWarning("Backpack not Loaded!");
     }
 
     public void BackToTurnStart()
@@ -68,7 +83,7 @@ public class PlayerTurnOverlay : MonoBehaviour
 
     public void CancelBattle()
     {
-        Debug.Log("Flieht ihr Narren!");
+        Debug.LogWarning("Flieht ihr Narren!");
     }
 
     public void SelectAttack(int buttonNumber)

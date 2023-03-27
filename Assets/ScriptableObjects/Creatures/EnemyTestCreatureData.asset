@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 080d3d6f2a429d74c9dc57d8f19b6e6f, type: 3}
-  m_Name: PlayerCreatureData
+  m_Name: EnemyTestCreatureData
   m_EditorClassIdentifier: 
-  Name: Gott Dieter
-  Level: 99
-  maxLifePoints: 50
-  currentLifePoints: 50
+  Name: 
+  Level: 0
+  maxLifePoints: 0
+  currentLifePoints: 0
   isAlife: 0
   maxEnergyPoints: 0
   currentEnergyPoints: 0
   normalIni: 0
   modifierIni: 0
+  normalAtk: 0
+  normalDef: 0
   skillsLearned: []

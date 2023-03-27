@@ -18,6 +18,9 @@ public class CreaturesScriptableObjects : ScriptableObject
     public int normalIni;
     public int modifierIni;
 
+    public int normalAtk;
+    public int normalDef;
+
     public bool finAttacking { get; private set; }
 
     public List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();

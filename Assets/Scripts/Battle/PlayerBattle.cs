@@ -4,28 +4,88 @@ using UnityEngine;
 
 public class PlayerBattle : MonoBehaviour
 {
-    public string Name = "Blue";
-    public int Level = 5;
-    public int maxLifePoints = 20;
-    public int currentLifePoints = 20;
-    public bool isAlife = true;
 
-    public int maxEnergyPoints = 20;
-    public int currentEnergyPoints = 20;
+    [SerializeField] CreaturesScriptableObjects playerStats;
+    List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
 
-    int normalIni = 2;
-    int modifierIni = 0;
+    string Name = "Blue";
+    int Level;
+    int maxLifePoints;
+    int currentLifePoints;
+    bool isAlife = true;
 
-    int normalAtk = 3;
-    int normalDef = 3;
+    int maxEnergyPoints;
+    int currentEnergyPoints;
 
-    public bool finAttacking = false;
+    int normalIni;
+    int modifierIni;
 
-    [SerializeField] public List<SkillScriptableObjects> skillsLearned = new List<SkillScriptableObjects>();
+    int normalAtk;
+    int normalDef;
+
+    bool finAttacking = false;
+
+
+    private void Awake()
+    {
+        Name = playerStats.Name;
+        Level = playerStats.Level;
+        maxLifePoints = playerStats.maxLifePoints;
+        currentLifePoints = playerStats.currentLifePoints;
+        isAlife = playerStats.isAlife;
+        maxEnergyPoints = playerStats.maxEnergyPoints;
+        currentEnergyPoints = playerStats.currentEnergyPoints;
+        normalIni = playerStats.normalIni;
+        modifierIni = playerStats.modifierIni;
+        normalAtk = playerStats.normalAtk;
+        normalDef = playerStats.normalDef;
+        finAttacking = playerStats.finAttacking;
+        skillsLearned = playerStats.skillsLearned;
+    }
+
+    public string GetName()
+    {
+        return Name;
+    }
+
+    public int GetLevel()
+    {
+        return Level;
+    }
 
     public int GetInitiave()
     {
         return normalIni + modifierIni;
+    }
+
+    public int GetMaxLifepoints()
+    {
+        return maxLifePoints;
+    }
+
+    public int GetCurrentLifepoints()
+    {
+        return currentLifePoints;
+    }
+
+    public bool GetIsAlife()
+    { 
+        return isAlife;
+    }
+
+    public bool GetFinAttack()
+    { 
+        return finAttacking;
+    }
+
+    public void SetFinAttack(bool b)
+    {
+        finAttacking = b;
+    }
+
+    public List<SkillScriptableObjects> GetSkillsLearned()
+    {
+        return skillsLearned;
     }
 
     public void DamageTaken(int damage)

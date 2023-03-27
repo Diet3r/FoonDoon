@@ -37,14 +37,14 @@ public class BattleOverlay : MonoBehaviour
         playerHealthSlider.maxValue = battleManager.PlayerMaxLife();
         playerHealthSlider.minValue = 0;
         playerHealthSlider.value = battleManager.PlayerCurrentLife();
-        playerNameText.text = player.Name;
-        playerLevelText.text = "Lv. " + player.Level.ToString();
+        playerNameText.text = player.GetName();
+        playerLevelText.text = "Lv. " + player.GetLevel().ToString();
         
         enemyHealthSlider.maxValue = battleManager.EnemyMaxLife();
         enemyHealthSlider.minValue = 0;
         enemyHealthSlider.value += battleManager.EnemyCurrentLife();
-        enemyNameText.text = enemy.Name;
-        enemyLevelText.text = "Lv. " + enemy.Level.ToString();
+        enemyNameText.text = enemy.GetName();
+        enemyLevelText.text = "Lv. " + enemy.GetLevel().ToString();
     }
 
     // Update is called once per frame
