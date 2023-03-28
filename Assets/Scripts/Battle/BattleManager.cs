@@ -9,6 +9,16 @@ public class BattleManager : MonoBehaviour
     EnemyBattle enemy;
     BattleOverlay overlay;
 
+    public PlayerBattle Player()
+    {
+        return player;
+    }
+
+    public EnemyBattle Enemy() 
+    {
+        return enemy;
+    }
+
     int playerMaxLife;
     int enemyMaxLife;
 
@@ -62,12 +72,13 @@ public class BattleManager : MonoBehaviour
         player = FindObjectOfType<PlayerBattle>();
         enemy = FindObjectOfType<EnemyBattle>();
         overlay = FindObjectOfType<BattleOverlay>();
-        SetPELifeAndIni();
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        SetPELifeAndIni();
         //StartIntro
         //Count and BattleState Start
         counter = 1;
@@ -224,11 +235,13 @@ public class BattleManager : MonoBehaviour
             break;
             case 6:
                 {
+                    lastBattleState = battleState;
                     Debug.Log(battleState);
                 }
             break;
             case 7:
                 {
+                    lastBattleState = battleState;
                     Debug.Log(battleState);
                 }
             break;
@@ -309,10 +322,11 @@ public class BattleManager : MonoBehaviour
     {
         lastBattleState = battleState;
         battleState = BattleStates.End;
-    } //not in use
+    }
 
     void CheckTurnCountForAttack() //Check if Counter is right for someones turn
     {
+        Debug.Log("PlayerIni: " + playerIni + "/ EnemyIni: " + enemyIni);
         if (counter % playerIni == 0 || counter % enemyIni == 0)
         {
             if (counter % enemyIni == 0 && counter % playerIni == 0)

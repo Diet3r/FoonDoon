@@ -13,16 +13,16 @@ public class EnemyBattle : MonoBehaviour
     int maxLifePoints;
     int currentLifePoints;
     bool isAlife = true;
-
+    
     int maxEnergyPoints;
     int currentEnergyPoints;
-
+    
     int normalIni;
     int modifierIni;
-
+    
     int normalAtk;
     int normalDef;
-
+    
     bool finAttacking = false;
 
     private void Awake()

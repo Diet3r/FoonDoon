@@ -122,4 +122,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ded963891d5336a4f94e0545ea812868, type: 2}
   - {fileID: 11400000, guid: caf576adf8f597c44b7c90427e6e9fed, type: 2}
   - {fileID: 11400000, guid: 5ea21ea51d7956340aaac74508c90777, type: 2}
-  enemy: {fileID: 11400000, guid: ded963891d5336a4f94e0545ea812868, type: 2}
+  enemy: {fileID: 11400000, guid: 083e4654ba18f2342bc0b450f5c0660e, type: 2}

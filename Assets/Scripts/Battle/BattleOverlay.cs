@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class BattleOverlay : MonoBehaviour
 {
     BattleManager battleManager;
-    PlayerBattle player;
-    EnemyBattle enemy;
 
     [SerializeField] GameObject StandardOverlay;
     [SerializeField] GameObject TurnOverlay;
@@ -24,33 +22,36 @@ public class BattleOverlay : MonoBehaviour
     [SerializeField] TextMeshProUGUI enemyLevelText;
     [SerializeField] Slider enemyHealthSlider;
     [SerializeField] Slider enemyEnergySlider;
-
-    int battleState;
     
     // Start is called before the first frame update
     void Start()
     {
         battleManager = FindObjectOfType<BattleManager>();
-        player = FindObjectOfType<PlayerBattle>();
-        enemy = FindObjectOfType<EnemyBattle>();
-        
-        playerHealthSlider.maxValue = battleManager.PlayerMaxLife();
-        playerHealthSlider.minValue = 0;
-        playerHealthSlider.value = battleManager.PlayerCurrentLife();
-        playerNameText.text = player.GetName();
-        playerLevelText.text = "Lv. " + player.GetLevel().ToString();
-        
-        enemyHealthSlider.maxValue = battleManager.EnemyMaxLife();
-        enemyHealthSlider.minValue = 0;
-        enemyHealthSlider.value += battleManager.EnemyCurrentLife();
-        enemyNameText.text = enemy.GetName();
-        enemyLevelText.text = "Lv. " + enemy.GetLevel().ToString();
+
+        Invoke("LoadDataForUI", 0.001f);
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    void LoadDataForUI()
+    {
+        playerHealthSlider.maxValue = battleManager.PlayerMaxLife();
+        Debug.Log(battleManager.PlayerMaxLife());
+        playerHealthSlider.minValue = 0;
+        playerHealthSlider.value = battleManager.PlayerCurrentLife();
+        playerNameText.text = battleManager.Player().GetName();
+        playerLevelText.text = "Lv. " + battleManager.Player().GetLevel().ToString();
+        Debug.Log(battleManager.PlayerMaxLife());
+
+        enemyHealthSlider.maxValue = battleManager.EnemyMaxLife();
+        enemyHealthSlider.minValue = 0;
+        enemyHealthSlider.value += battleManager.EnemyCurrentLife();
+        enemyNameText.text = battleManager.Enemy().GetName();
+        enemyLevelText.text = "Lv. " + battleManager.Enemy().GetLevel().ToString();
     }
 
     public void LifeUpdate()
