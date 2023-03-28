@@ -19,8 +19,9 @@ MonoBehaviour:
   isAlife: 1
   maxEnergyPoints: 1
   currentEnergyPoints: 1
-  normalIni: 1
+  normalIni: 3
   modifierIni: 1
-  normalAtk: 1
+  normalAtk: 2
   normalDef: 1
-  skillsLearned: []
+  skillsLearned:
+  - {fileID: 11400000, guid: fd99f503d82eb2d43b45f2224addff08, type: 2}

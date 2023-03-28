@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BattleToggle : MonoBehaviour
@@ -22,10 +23,10 @@ public class BattleToggle : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (Random.Range(1, 101) <= 50)
+            if (Random.Range(1, 101) <= 10)
             {
                 int i = Random.Range(0, creatures.Count);
-                enemy = creatures[i];
+                SetEnemyByCreatur(i);
                 BattleCheck battleCheck = FindObjectOfType<BattleCheck>();
                 battleCheck.SetBattle(true);
             }
@@ -34,5 +35,26 @@ public class BattleToggle : MonoBehaviour
                 Debug.Log("Battle not toggled");
             }
         }
+    }
+
+    void SetEnemyByCreatur( int i)
+    {
+        enemy.Name = creatures[i].Name;
+        enemy.Level = creatures[i].Level;
+
+        enemy.maxLifePoints = creatures[i].maxLifePoints;
+        enemy.currentLifePoints = creatures[i].currentLifePoints;
+        enemy.isAlife = creatures[i].isAlife;
+
+        enemy.maxEnergyPoints = creatures[i].maxEnergyPoints;
+        enemy.currentEnergyPoints = creatures[i].currentEnergyPoints;
+
+        enemy.normalIni = creatures[i].normalIni;
+        enemy.modifierIni = creatures[i].modifierIni;
+
+        enemy.normalAtk = creatures[i].normalAtk;
+        enemy.normalDef = creatures[i].normalDef;
+
+        enemy.FinischAttacking(creatures[i].finAttacking);
     }
 }

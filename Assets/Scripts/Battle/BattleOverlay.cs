@@ -40,12 +40,10 @@ public class BattleOverlay : MonoBehaviour
     void LoadDataForUI()
     {
         playerHealthSlider.maxValue = battleManager.PlayerMaxLife();
-        Debug.Log(battleManager.PlayerMaxLife());
         playerHealthSlider.minValue = 0;
         playerHealthSlider.value = battleManager.PlayerCurrentLife();
         playerNameText.text = battleManager.Player().GetName();
         playerLevelText.text = "Lv. " + battleManager.Player().GetLevel().ToString();
-        Debug.Log(battleManager.PlayerMaxLife());
 
         enemyHealthSlider.maxValue = battleManager.EnemyMaxLife();
         enemyHealthSlider.minValue = 0;
