@@ -28,6 +28,7 @@ public class IngameMainMenu : MonoBehaviour
 
     public void ExitGame()
     {
+        PlayerPrefs.DeleteKey("running");
         Application.Quit();
     }
 }

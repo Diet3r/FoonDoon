@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!sprintIndicator)
             {
-                transform.Translate(new Vector3(xAxisInput * movementSpeed * Time.deltaTime, 0, zAxisInput * movementSpeed * Time.deltaTime));
+                transform.Translate(new Vector3(xAxisInput * movementSpeed * Time.deltaTime, 0,zAxisInput * movementSpeed * Time.deltaTime));
             }            
             else
             {

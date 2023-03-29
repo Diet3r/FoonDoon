@@ -80,6 +80,7 @@ public class BattleManager : MonoBehaviour
     {
         SetPELifeAndIni();
         //StartIntro
+
         //Count and BattleState Start
         counter = 1;
         lastCounter = 0;

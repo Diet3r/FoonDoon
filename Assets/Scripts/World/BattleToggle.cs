@@ -7,6 +7,8 @@ public class BattleToggle : MonoBehaviour
 {
     [SerializeField]List<CreaturesScriptableObjects> creatures = new List<CreaturesScriptableObjects>();
     [SerializeField]CreaturesScriptableObjects enemy;
+    
+    GameSave gameSave;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,11 @@ public class BattleToggle : MonoBehaviour
             {
                 int i = Random.Range(0, creatures.Count);
                 SetEnemyByCreatur(i);
+
+                gameSave = FindObjectOfType<GameSave>();
+                gameSave.SavePlayerPosition();
+                gameSave.SaveNearWorldPosition();
+
                 BattleCheck battleCheck = FindObjectOfType<BattleCheck>();
                 battleCheck.SetBattle(true);
             }
