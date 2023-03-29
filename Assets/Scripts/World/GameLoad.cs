@@ -12,13 +12,12 @@ public class GameLoad : MonoBehaviour
         { 
             PlayerPrefs.DeleteKey("PlayerX");
             PlayerPrefs.DeleteKey("PlayerY");
-            PlayerPrefs.DeleteKey("PlayerZ");
-        
-            PlayerPrefs.SetInt("running", 1);
+            PlayerPrefs.DeleteKey("PlayerZ");            
         }
         LoadPlayerPosition();
         LoadNearWorld();
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("running", 1);
         Debug.Log("Call Gameload");
     }
 
@@ -28,17 +27,15 @@ public class GameLoad : MonoBehaviour
         
     }
 
-    //function to search for playerprefs and load into player object
     void LoadPlayerPosition()
-    {
-        GameObject player = GameObject.Find("Player");
+    {        
         if (PlayerPrefs.HasKey("PlayerX") && PlayerPrefs.HasKey("PlayerY") && PlayerPrefs.HasKey("PlayerZ"))
         {
+            GameObject player = GameObject.Find("Player");
             player.transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerX"), PlayerPrefs.GetFloat("PlayerY"), PlayerPrefs.GetFloat("PlayerZ"));
         }
     }
-
-    //funtion to search for every playerpref and load into corresponding object
+    
     void LoadNearWorld()
     {
         GameObject[] nearWorld = GameObject.FindGameObjectsWithTag("NearWorld");

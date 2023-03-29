@@ -26,6 +26,7 @@ public class GameSave : MonoBehaviour
             PlayerPrefs.SetFloat("PlayerX", player.transform.position.x);
             PlayerPrefs.SetFloat("PlayerY", player.transform.position.y);
             PlayerPrefs.SetFloat("PlayerZ", player.transform.position.z);
+            Debug.Log("X: " + PlayerPrefs.GetFloat("PlayerX") + " Y: " + PlayerPrefs.GetFloat("PlayerY") + " Z: " + PlayerPrefs.GetFloat("PlayerZ"));
         }
     }
 
@@ -35,6 +36,11 @@ public class GameSave : MonoBehaviour
         GameObject[] nearWorld = GameObject.FindGameObjectsWithTag("NearWorld");
         foreach (GameObject nearWorldObject in nearWorld)
         {
+            NPCFighter npcFighter = nearWorldObject.GetComponent<NPCFighter>();
+            if (npcFighter != null) 
+            { 
+                npcFighter.SetNearWorld(true); 
+            }
             PlayerPrefs.SetFloat(nearWorldObject.name + "X", nearWorldObject.transform.position.x);
             PlayerPrefs.SetFloat(nearWorldObject.name + "Y", nearWorldObject.transform.position.y);
             PlayerPrefs.SetFloat(nearWorldObject.name + "Z", nearWorldObject.transform.position.z);

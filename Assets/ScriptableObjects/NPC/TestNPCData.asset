@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1098bb727e518b459c89c4668875058, type: 3}
+  m_Name: TestNPCData
+  m_EditorClassIdentifier: 
+  position: {x: 9.25, y: 1, z: 1.98}
+  rotation: {x: 0, y: 0, z: 0}
+  tempPosition: {x: 9.25, y: 1, z: 1.98}
+  tempRotation: {x: -0, y: 0, z: 0}
+  isNearWorld: 0
+  isDefeated: 0
