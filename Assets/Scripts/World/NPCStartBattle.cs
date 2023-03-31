@@ -27,14 +27,11 @@ public class NPCStartBattle : MonoBehaviour
                 gameSave = FindObjectOfType<GameSave>();
                 gameSave.SavePlayerPosition();
                 gameSave.SaveNearWorldPosition();
-
-                if (npcFighter != null)
-                {
-                    npcFighter.SetDefeated();
-                }
+                
+                npcFighter.SetDefeated();                
 
                 BattleCheck battleCheck = FindObjectOfType<BattleCheck>();
-                battleCheck.SetBattle(true);
+                //battleCheck.SetBattle(true);
             }
         }
     }
